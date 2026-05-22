@@ -79,6 +79,11 @@ export const TodoItem: React.FC<Props> = ({
     }
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleEditSubmit();
+  };
+
   return (
     <div
       data-cy="Todo"
@@ -105,13 +110,7 @@ export const TodoItem: React.FC<Props> = ({
       </label>
 
       {isEditing ? (
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            handleEditSubmit();
-          }}
-          style={{ width: '100%' }}
-        >
+        <form onSubmit={onSubmit}>
           <input
             ref={editFieldRef}
             type="text"
